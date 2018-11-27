@@ -58,6 +58,8 @@ public class AssetManagerUtils {
             mAssetManager.dispose();
             mAssetManager = null;
         }
+
+        mInstance = null;
     }
 
 }
