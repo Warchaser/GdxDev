@@ -29,8 +29,8 @@ public class MainGameScreen extends ScreenAdapter {
 
         mMainGameStage.setOnStateListener(new MainGameStage.OnStateListener() {
             @Override
-            public void onOver() {
-                showGameOverStage();
+            public void onOver(int score) {
+                showGameOverStage(score);
             }
         });
 
@@ -47,12 +47,12 @@ public class MainGameScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(mMainGameStage);
     }
 
-    private void showGameOverStage(){
+    private void showGameOverStage(int score){
         mGameOverStage.setStageVisible(true);
 
         Gdx.input.setInputProcessor(mGameOverStage);
 
-//        mGameOverStage.
+        mGameOverStage.setCurrentScore(score);
     }
 
     private void restartReadyGame(){

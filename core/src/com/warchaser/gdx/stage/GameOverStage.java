@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.warchaser.gdx.actor.ResultGroup;
 import com.warchaser.gdx.actor.framework.ImageActor;
 import com.warchaser.gdx.stage.base.BaseStage;
 import com.warchaser.gdx.util.AssetManagerUtils;
@@ -22,6 +23,8 @@ public class GameOverStage extends BaseStage {
      * */
     private ImageButton mBtnRestart;
 
+    private ResultGroup mResultGroup;
+
     private OnButtonClickListener mOnButtonClickListener;
 
     public GameOverStage(Viewport viewport) {
@@ -37,6 +40,11 @@ public class GameOverStage extends BaseStage {
         mGameOverTipActor.setCenterX(getWidth() / 2);
         mGameOverTipActor.setTopY(getHeight() - 150);
         addActor(mGameOverTipActor);
+
+        mResultGroup = new ResultGroup();
+        mResultGroup.setCenterX(getWidth() / 2);
+        mResultGroup.setTopY(mGameOverTipActor.getY() - 30);
+        addActor(mResultGroup);
 
         mBtnRestart = new ImageButton(
                 new TextureRegionDrawable(atlas.findRegion(ResConstant.Atlas.IMAGE_GAME_START_01_TO_02, 1)),
@@ -65,5 +73,11 @@ public class GameOverStage extends BaseStage {
 
         void onRestartClick();
 
+    }
+
+    public void setCurrentScore(int score){
+        if(mResultGroup != null){
+            mResultGroup.refreshThisTimeScore(score);
+        }
     }
 }

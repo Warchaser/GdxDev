@@ -201,7 +201,7 @@ public class MainGameStage extends BaseStage {
         stopAllBars();
 
         if(mOnStateListener != null){
-            mOnStateListener.onOver();
+            mOnStateListener.onOver(mCurrentScoreActor.getCurrentNumber());
         }
     }
 
@@ -384,7 +384,7 @@ public class MainGameStage extends BaseStage {
     }
 
     public interface OnStateListener{
-        void onOver();
+        void onOver(int score);
 
     }
 }
